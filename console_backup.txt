@@ -1,0 +1,23 @@
+CREATE TABLE Cars(
+    c_id int primary key not null,
+    isReserved int not null,
+    brand text not null,
+    model text not null,
+    year integer not null,
+    mileage real not null,
+    cost real not null
+);
+
+PRAGMA foreign_keys;
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE CarReservations(
+    cr_id int,
+    familyName text not null,
+    firstName text not null,
+    personal_id text not null,
+    FOREIGN KEY(cr_id) REFERENCES Cars(c_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT pk_CarReservationCar PRIMARY KEY (cr_id)
+)
